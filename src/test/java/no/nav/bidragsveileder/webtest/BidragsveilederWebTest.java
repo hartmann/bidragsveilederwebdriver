@@ -23,10 +23,10 @@ public class BidragsveilederWebTest {
 
     @Before
     public void setup() {
-     //   driver = new FirefoxDriver();
-      HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver();
-      htmlUnitDriver.setJavascriptEnabled(true);
-      driver = htmlUnitDriver;
+        //   driver = new FirefoxDriver();
+        HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver();
+        htmlUnitDriver.setJavascriptEnabled(true);
+        driver = htmlUnitDriver;
         PageMother.setDriver(driver);
         driver.get(START_PAGE);
     }
@@ -51,8 +51,12 @@ public class BidragsveilederWebTest {
         assertTrue(resultatPage.isCurrentPage());
     }
 
+    @Test
     public void skalViseFeilmeldingDersomFodselsdatoIkkeOppgis() {
-        //gå videre
+        UnderholdskostnadPage underholdskostnadPage = PageMother.createUnderholdskostnadPage();
+        underholdskostnadPage.gaaVidereMedValideringsfeil();
+        assertTrue(underholdskostnadPage.isCurrentPage());
+        assertTrue(underholdskostnadPage.isErrorMessagesDisplayed());
     }
 
     public void skalViseHjelpetekstForBarnetsFodselsdato() {

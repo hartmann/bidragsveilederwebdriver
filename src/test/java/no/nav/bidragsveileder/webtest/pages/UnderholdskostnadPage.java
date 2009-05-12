@@ -1,9 +1,6 @@
 package no.nav.bidragsveileder.webtest.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.How;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.CacheLookup;
 
@@ -13,7 +10,7 @@ import org.openqa.selenium.support.CacheLookup;
  * Time: 20:03:21
  */
 public class UnderholdskostnadPage {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public enum UtgifterBarnetilsyn {
         HAR_UTGIFTER_TIL_BARNETILSYN("steg2_bidragsmottakerHarUtgiftertrue"),
@@ -33,7 +30,6 @@ public class UnderholdskostnadPage {
     }
 
 
-
     @FindBy(how = How.NAME, using = "barnetsFodselsdatoString")
     @CacheLookup
     private WebElement barnetsFodselsdato;
@@ -41,6 +37,13 @@ public class UnderholdskostnadPage {
     @FindBy(how = How.XPATH, using = "//input[contains(@value,'videre')]")
     @CacheLookup
     private WebElement gaaVidereButton;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(@href,'sjablonInfo')]")
+    @CacheLookup
+    private RenderedWebElement beregningsinformasjonLink;
+
+    @FindBy(how = How.XPATH, using = "//span[@class='errorMessage']")
+    private RenderedWebElement feilmelding;
 
     public UnderholdskostnadPage(WebDriver driver) {
         this.driver = driver;
@@ -58,5 +61,18 @@ public class UnderholdskostnadPage {
     public InntektPage gaaVidere() {
         gaaVidereButton.click();
         return PageMother.createInntektPage();
+    }
+
+    public UnderholdskostnadPage gaaVidereMedValideringsfeil() {
+        gaaVidereButton.click();
+        return this;
+    }
+
+    public boolean isCurrentPage() {
+        return beregningsinformasjonLink.isDisplayed();
+    }
+
+    public boolean isErrorMessagesDisplayed() {
+        return feilmelding.isDisplayed();
     }
 }
