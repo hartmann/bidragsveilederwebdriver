@@ -9,6 +9,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import no.nav.bidragsveileder.webtest.pages.*;
 import static no.nav.bidragsveileder.webtest.pages.UnderholdskostnadPage.UtgifterBarnetilsyn.HAR_IKKE_UTGIFTER_TIL_BARNETILSYN;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.assertFalse;
 
 /**
  * User: Vegard Hartmann
@@ -59,8 +60,12 @@ public class BidragsveilederWebTest {
         assertTrue(underholdskostnadPage.isErrorMessagesDisplayed());
     }
 
+    @Test
     public void skalViseHjelpetekstForBarnetsFodselsdato() {
-        //klikk ikon for hjelpetekst
+        UnderholdskostnadPage underholdskostnadPage = PageMother.createUnderholdskostnadPage();
+        assertFalse(underholdskostnadPage.isHelptextDisplayed());
+        underholdskostnadPage.visHjelpForBarnetsFodselsdato();
+        assertTrue(underholdskostnadPage.isHelptextDisplayed());
     }
 
     public void visInformasjonOmBeregningAvUnderholdskostnad() {
@@ -79,7 +84,7 @@ public class BidragsveilederWebTest {
         //gå tilbake til hvert enkelt tidligere steg
     }
 
-    //@After
+    @After
     public void teardown() {
         driver.close();
     }

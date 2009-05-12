@@ -12,6 +12,14 @@ import org.openqa.selenium.support.CacheLookup;
 public class UnderholdskostnadPage {
     private final WebDriver driver;
 
+    public void visHjelpForBarnetsFodselsdato() {
+        barnetsFodseldatoHjelpButton.click();
+    }
+
+    public boolean isHelptextDisplayed() {
+        return helptext.isDisplayed();
+    }
+
     public enum UtgifterBarnetilsyn {
         HAR_UTGIFTER_TIL_BARNETILSYN("steg2_bidragsmottakerHarUtgiftertrue"),
         HAR_IKKE_UTGIFTER_TIL_BARNETILSYN("steg2_bidragsmottakerHarUtgifterfalse");
@@ -29,6 +37,9 @@ public class UnderholdskostnadPage {
 
     }
 
+    @FindBy(how = How.ID, using = "NAVhelpTxt")
+    private RenderedWebElement helptext;
+
 
     @FindBy(how = How.NAME, using = "barnetsFodselsdatoString")
     @CacheLookup
@@ -44,6 +55,10 @@ public class UnderholdskostnadPage {
 
     @FindBy(how = How.XPATH, using = "//span[@class='errorMessage']")
     private RenderedWebElement feilmelding;
+
+    @FindBy(how = How.XPATH, using = "//img[contains(@alt,'Klikk her for mer hjelp')]")
+    @CacheLookup
+    private WebElement barnetsFodseldatoHjelpButton;
 
     public UnderholdskostnadPage(WebDriver driver) {
         this.driver = driver;
