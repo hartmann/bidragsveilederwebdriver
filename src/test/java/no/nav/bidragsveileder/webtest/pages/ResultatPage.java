@@ -1,9 +1,9 @@
 package no.nav.bidragsveileder.webtest.pages;
 
 import org.openqa.selenium.RenderedWebElement;
-import org.openqa.selenium.How;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 /**
  * User: Vegard Hartmann
@@ -15,7 +15,7 @@ public class ResultatPage {
     @FindBy(how = How.XPATH, using = "//a[contains(@href,'detaljertBeregning')]")
     @CacheLookup
     private RenderedWebElement detaljertUtregningLink;
-    
+
     public boolean isCurrentPage() {
         return detaljertUtregningLink.isDisplayed();
     }

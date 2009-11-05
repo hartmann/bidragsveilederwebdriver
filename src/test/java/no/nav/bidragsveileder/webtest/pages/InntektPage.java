@@ -1,11 +1,11 @@
 package no.nav.bidragsveileder.webtest.pages;
 
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.How;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 /**
  * User: Vegard Hartmann
@@ -14,7 +14,6 @@ import org.openqa.selenium.WebDriver;
  */
 public class InntektPage {
     private WebDriver driver;
-
 
 
     public enum Boforhold {
@@ -99,7 +98,7 @@ public class InntektPage {
     }
 
     public void velgSkatteklasseBidragspliktig(Skatteklasse skatteklasse) {
-          WebElement radiobutton = driver.findElement(By.xpath("//input[(@value='" + skatteklasse + "') and (@name='bidragsgiverSkatteklasseString')]"));
+        WebElement radiobutton = driver.findElement(By.xpath("//input[(@value='" + skatteklasse + "') and (@name='bidragsgiverSkatteklasseString')]"));
         radiobutton.setSelected();
     }
 
@@ -112,7 +111,7 @@ public class InntektPage {
         gaaVidereButton.click();
         return PageMother.createSamvaerPage();
     }
-    
+
     public void registrerPersonInntektBidragsmottaker(int inntekt) {
         inntektBidragsmottaker.sendKeys(String.valueOf(inntekt));
     }

@@ -1,15 +1,14 @@
 package no.nav.bidragsveileder.webtest;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.After;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import no.nav.bidragsveileder.webtest.pages.*;
 import static no.nav.bidragsveileder.webtest.pages.UnderholdskostnadPage.UtgifterBarnetilsyn.HAR_IKKE_UTGIFTER_TIL_BARNETILSYN;
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.assertFalse;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * User: Vegard Hartmann
@@ -24,10 +23,10 @@ public class BidragsveilederWebTest {
 
     @Before
     public void setup() {
-        //   driver = new FirefoxDriver();
-        HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver();
-        htmlUnitDriver.setJavascriptEnabled(true);
-        driver = htmlUnitDriver;
+        driver = new FirefoxDriver();
+//        HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver();
+//        htmlUnitDriver.setJavascriptEnabled(true);
+//        driver = htmlUnitDriver;
         PageMother.setDriver(driver);
         driver.get(START_PAGE);
     }
